@@ -114,16 +114,16 @@ def showSaccades(model):
     
    
 
-tab1, tab2 = st.tabs(["Dados Brutos", "Dados Processados"])
+tab1, tab2 = st.tabs(["Dados Brutos", "Dados Processados"]) #Raw Data , Processed Data
 
 with tab1:
-    st.title("Dados obtidos pela calibração")
+    st.title("Dados obtidos pela calibração") #Data obtained by calibration
     st.dataframe(raw_dataset)
 
     col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader("Olho esquerdo")
+        st.subheader("Olho esquerdo") #Left eye
         df = raw_dataset
 
 
@@ -138,7 +138,7 @@ with tab1:
         st.plotly_chart(fig_left, theme="streamlit", use_container_width=True)
 
     with col2:    
-        st.subheader("Olho direito")
+        st.subheader("Olho direito") #Right eye
         
         fig_right = px.scatter(
             df,
@@ -174,14 +174,14 @@ with tab2:
     col1, col2 = st.columns(2)
     
     
-    st.subheader("Predição Regressão Linear")
+    st.subheader("Predição Regressão Linear") #Linear Regression Prediction
     showSaccades(linear_model.LinearRegression())
     
-    st.subheader("Predição Regressão Linear Ridge")
+    st.subheader("Predição Regressão Linear Ridge") #Ridge Linear Regression Prediction
     showSaccades(linear_model.Ridge(alpha=.5))
     
-    st.subheader("Predição Regressão Linear Ridge com Cross Validation")
+    st.subheader("Predição Regressão Linear Ridge com Cross Validation") #Linear Ridge Regression Prediction with Cross Validation
     showSaccades(linear_model.RidgeCV(alphas=np.logspace(-6, 6, 13)))
         
-    st.subheader("Predição Regressão Linear Lasso")
+    st.subheader("Predição Regressão Linear Lasso") #Lasso Linear Regression Prediction
     showSaccades(linear_model.Lasso(alpha=0.1))
